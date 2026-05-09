@@ -48,12 +48,11 @@ export default function CompanyPage({ params }: PageProps) {
   const [selectedCompany, setSelectedCompany] = useState('');
   const [loadingCompanies, setLoadingCompanies] = useState(true);
 
-  // Fetch current company data
+  // Fetch current company data – using relative URL (works in dev & production)
   useEffect(() => {
     const fetchCompanyData = async () => {
       setLoading(true);
-      const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000';
-      const res = await fetch(`${baseUrl}/api/company/${params.company}`);
+      const res = await fetch(`/api/company/${params.company}`);
       if (!res.ok) {
         setData(null);
         setLoading(false);
@@ -67,7 +66,7 @@ export default function CompanyPage({ params }: PageProps) {
     fetchCompanyData();
   }, [params.company]);
 
-  // Fetch all companies
+  // Fetch all companies (using relative URL)
   useEffect(() => {
     fetch('/api/salaries?limit=1000')
       .then(res => res.json())
@@ -191,12 +190,13 @@ export default function CompanyPage({ params }: PageProps) {
           </div>
         </div>
 
-        {/* Company header, median, distribution, chart, and table */}
+        {/* Company header */}
         <div className="mb-6">
           <h1 className="text-4xl font-bold">{capitalizeCompany(params.company)}</h1>
           <p className="text-gray-500 mt-1">Compensation insights by level</p>
         </div>
 
+        {/* Median and Level Distribution Cards */}
         <div className="grid md:grid-cols-2 gap-6 mb-10">
           <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl p-6 shadow-sm">
             <h2 className="text-sm uppercase tracking-wide text-gray-500">Median Total Compensation</h2>
@@ -215,6 +215,7 @@ export default function CompanyPage({ params }: PageProps) {
           </div>
         </div>
 
+        {/* Chart */}
         {chartData && chartData.labels.length > 0 && (
           <div className="bg-white rounded-xl border border-gray-200 p-6 shadow-sm mb-10">
             <div style={{ height: '400px' }}>
@@ -223,6 +224,7 @@ export default function CompanyPage({ params }: PageProps) {
           </div>
         )}
 
+        {/* Salary Table */}
         <div className="bg-white rounded-xl border border-gray-200 overflow-hidden">
           <div className="px-6 py-4 border-b border-gray-200">
             <h2 className="text-xl font-semibold">All Salaries</h2>
