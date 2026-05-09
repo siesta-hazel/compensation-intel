@@ -7,7 +7,7 @@
 
 A **levels-based compensation intelligence system** that helps users compare software engineer salaries across companies using standardized levels (L3, L4, L5). Unlike raw salary listing sites, this system provides structured, comparable, and decision-ready insights.
 
-**Live Demo:** [[https://your-vercel-url.vercel.app](https://compensation-system-black.vercel.app/)](https://your-vercel-url.vercel.app)  
+**Live Demo:** [https://compensation-system-black.vercel.app/]([https://your-vercel-url.vercel.app](https://compensation-system-black.vercel.app/))  
 **Research Document:** [RESEARCH.md](./RESEARCH.md)
 
 ---
